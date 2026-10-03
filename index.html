@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Una domanda per Elena 💌</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Una domanda per Elena 💌
+  </title>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       min-height: 100vh;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
+      padding: 20px;
 
       font-family:
         -apple-system,
@@ -27,98 +45,174 @@
       color: #332d3d;
 
       background:
-        radial-gradient(circle at top left, #f7dff0, transparent 45%),
-        radial-gradient(circle at bottom right, #e4dcff, transparent 45%),
+
+        radial-gradient(
+          circle at top left,
+          #f7dff0,
+          transparent 45%
+        ),
+
+        radial-gradient(
+          circle at bottom right,
+          #e4dcff,
+          transparent 45%
+        ),
+
         #fffaf7;
 
-      padding: 20px;
     }
+
 
     .container {
+
       width: 100%;
+
       max-width: 620px;
+
     }
 
+
     .card {
-      background: rgba(255,255,255,0.94);
-      border-radius: 28px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      width: 100%;
 
       padding: 40px 32px;
 
+      background:
+        rgba(255, 255, 255, 0.95);
+
+      border-radius: 28px;
+
       box-shadow:
-        0 25px 70px rgba(70, 45, 90, 0.13);
+        0 25px 70px
+        rgba(70, 45, 90, 0.13);
 
       text-align: center;
 
-      position: relative;
-      overflow: hidden;
     }
+
+
+    .screen {
+
+      display: none;
+
+      animation:
+        fadeIn 0.4s ease;
+
+    }
+
+
+    .screen.active {
+
+      display: block;
+
+    }
+
+
+    @keyframes fadeIn {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(14px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+
+      }
+
+    }
+
 
     .emoji-big {
-      font-size: 54px;
+
       margin-bottom: 12px;
+
+      font-size: 54px;
+
     }
 
-    h1 {
-      margin: 0 0 16px;
 
-      font-size: clamp(30px, 6vw, 44px);
+    h1 {
+
+      margin:
+        0 0 16px;
+
+      font-size:
+        clamp(30px, 6vw, 44px);
 
       line-height: 1.1;
 
       letter-spacing: -1px;
+
     }
+
 
     h2 {
+
       margin-top: 0;
+
     }
+
 
     p {
+
       color: #6f6878;
+
       line-height: 1.7;
+
     }
 
-    .screen {
-      display: none;
 
-      animation: fadeIn 0.35s ease;
-    }
+    /* ========================= */
+    /* BOTTONI INIZIALI */
+    /* ========================= */
 
-    .screen.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     .buttons {
+
+      position: relative;
+
       display: flex;
+
       justify-content: center;
+
+      align-items: center;
+
       gap: 14px;
+
+      min-height: 65px;
 
       margin-top: 28px;
 
-      position: relative;
-      min-height: 58px;
     }
 
+
     button {
+
       border: none;
 
-      padding: 14px 24px;
+      padding:
+        14px 24px;
 
       border-radius: 14px;
 
+      font-family: inherit;
+
       font-size: 16px;
+
       font-weight: 700;
 
       cursor: pointer;
@@ -127,47 +221,142 @@
         transform 0.18s,
         box-shadow 0.18s,
         background 0.18s;
+
     }
+
 
     button:hover {
-      transform: translateY(-2px);
+
+      transform:
+        translateY(-2px);
+
     }
 
+
     .yes {
+
       background: #8666b7;
+
       color: white;
 
       box-shadow:
-        0 8px 22px rgba(134, 102, 183, 0.25);
+        0 8px 22px
+        rgba(134, 102, 183, 0.25);
+
     }
+
 
     .yes:hover {
+
       background: #7352a4;
+
     }
 
+
     .no {
+
       background: #eeeaf2;
+
       color: #55505d;
 
       position: relative;
+
     }
+
 
     .no.running {
+
       position: absolute;
+
+      transition:
+        left 0.25s ease,
+        top 0.25s ease;
+
     }
 
+
+    /* ========================= */
+    /* REAZIONI */
+    /* ========================= */
+
+
     .reaction {
-      min-height: 28px;
+
+      min-height: 45px;
 
       margin-top: 18px;
 
       color: #80629f;
 
-      font-size: 14px;
+      font-size: 15px;
+
       font-weight: 600;
+
+      line-height: 1.6;
+
     }
 
+
+    .sad-face {
+
+      display: inline-block;
+
+      font-size: 34px;
+
+      animation:
+        sadAppear 0.5s ease;
+
+    }
+
+
+    @keyframes sadAppear {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+          scale(0.5);
+
+      }
+
+      70% {
+
+        transform:
+          scale(1.15);
+
+      }
+
+      100% {
+
+        opacity: 1;
+
+        transform:
+          scale(1);
+
+      }
+
+    }
+
+
+    .small-note {
+
+      margin-top: 22px;
+
+      color: #aaa2b0;
+
+      font-size: 12px;
+
+    }
+
+
+    /* ========================= */
+    /* SCELTA ATTIVITÀ */
+    /* ========================= */
+
+
     .choices {
+
       display: grid;
 
       grid-template-columns:
@@ -176,16 +365,11 @@
       gap: 12px;
 
       margin-top: 25px;
+
     }
 
+
     .choice {
-      background: white;
-
-      border: 1px solid #e5deeb;
-
-      color: #403848;
-
-      min-height: 78px;
 
       display: flex;
 
@@ -196,230 +380,415 @@
       justify-content: center;
 
       gap: 5px;
+
+      min-height: 82px;
+
+      background: white;
+
+      border: 1px solid #e5deeb;
+
+      color: #403848;
+
     }
 
-    .choice .icon {
-      font-size: 27px;
-    }
 
     .choice:hover {
+
       border-color: #a88bc9;
 
       background: #faf6ff;
+
     }
+
 
     .choice.selected {
-      border: 2px solid #8666b7;
 
-      background: #f7f0ff;
+      border:
+        2px solid #8666b7;
+
+      background:
+        #f7f0ff;
+
     }
 
+
+    .choice .icon {
+
+      font-size: 27px;
+
+    }
+
+
+    /* ========================= */
+    /* BOTTONI AVANTI */
+    /* ========================= */
+
+
     .next {
+
+      width: 100%;
+
       margin-top: 22px;
 
       background: #8666b7;
 
       color: white;
 
-      width: 100%;
     }
 
+
+    .next:hover {
+
+      background: #7352a4;
+
+    }
+
+
     .back {
+
       margin-top: 10px;
+
+      padding: 8px;
 
       background: transparent;
 
       color: #817987;
 
       font-size: 14px;
+
     }
 
+
+    .back:hover {
+
+      transform: none;
+
+      color: #5f5867;
+
+    }
+
+
+    /* ========================= */
+    /* FORM */
+    /* ========================= */
+
+
     label {
+
       display: block;
 
-      text-align: left;
+      margin:
+        18px 0 7px;
 
-      margin: 18px 0 7px;
+      text-align: left;
 
       font-size: 14px;
 
       font-weight: 700;
+
     }
+
 
     input,
     textarea,
     select {
+
       width: 100%;
 
       padding: 14px;
 
-      border: 1px solid #ded6e6;
+      border:
+        1px solid #ded6e6;
 
       border-radius: 12px;
 
       background: white;
 
+      color: #3b3544;
+
       font-family: inherit;
 
       font-size: 16px;
 
-      color: #3b3544;
     }
 
+
     textarea {
+
       min-height: 110px;
 
       resize: vertical;
+
     }
+
 
     input:focus,
     textarea:focus,
     select:focus {
-      outline: 2px solid #cbb7e2;
+
+      outline:
+        2px solid #cbb7e2;
 
       outline-offset: 2px;
+
     }
+
+
+    /* ========================= */
+    /* FINALE */
+    /* ========================= */
+
 
     .final-emoji {
-      font-size: 65px;
 
       margin-bottom: 10px;
+
+      font-size: 65px;
+
+      animation:
+        finalPop 0.7s ease;
+
     }
 
-    .small-note {
-      margin-top: 22px;
 
-      font-size: 12px;
+    @keyframes finalPop {
 
-      color: #aaa2b0;
+      0% {
+
+        opacity: 0;
+
+        transform:
+          scale(0.5)
+          rotate(-10deg);
+
+      }
+
+      70% {
+
+        transform:
+          scale(1.12)
+          rotate(4deg);
+
+      }
+
+      100% {
+
+        opacity: 1;
+
+        transform:
+          scale(1)
+          rotate(0);
+
+      }
+
     }
+
+
+    /* ========================= */
+    /* MOBILE */
+    /* ========================= */
+
 
     @media (max-width: 500px) {
 
       .card {
-        padding: 30px 20px;
+
+        padding:
+          30px 20px;
+
       }
+
 
       .choices {
+
         grid-template-columns: 1fr;
+
       }
+
 
       .buttons {
+
         flex-direction: column;
-        align-items: center;
+
       }
+
 
       .buttons button {
+
         width: 100%;
+
       }
 
+
       .no.running {
+
         position: absolute;
+
       }
+
     }
+
   </style>
+
 </head>
+
 
 
 <body>
 
+
 <div class="container">
+
 
   <div class="card">
 
 
-    <!-- ========================= -->
-    <!-- SCHERMATA 1 -->
-    <!-- ========================= -->
 
-    <section class="screen active" id="screen1">
+    <!-- ================================= -->
+    <!-- SCHERMATA 1 -->
+    <!-- ================================= -->
+
+
+    <section
+      class="screen active"
+      id="screen1"
+    >
 
       <div class="emoji-big">
         ☀️
       </div>
 
+
       <h1>
         Elena, vuoi uscire con me?
       </h1>
 
-      <p>
-        Non sapevo come chiedertelo.
-        <br>
-        Ho pensato ad un modo carino per farlo e alla peggio ti fai una risata.
-      </p>
 
       <p>
-        Quindi...
+
+        Ho una domanda abbastanza semplice da farti.
+
         <br>
-        <strong>ti va?</strong>
+
+        Anche se, a quanto pare,
+        ho avuto bisogno di creare
+        un intero sito web per farla. 😂
+
       </p>
+
+
+      <p>
+
+        Quindi...
+
+        <br>
+
+        <strong>
+          ti va?
+        </strong>
+
+      </p>
+
 
 
       <div class="buttons">
 
+
         <button
           class="yes"
-          onclick="answerYes()">
+          onclick="answerYes()"
+        >
+
           Sì 💜
+
         </button>
+
 
         <button
           class="no"
           id="noButton"
-          onclick="answerNo()">
+          onclick="answerNo()"
+        >
+
           No
+
         </button>
 
+
       </div>
+
 
 
       <div
         class="reaction"
-        id="noReaction">
-      </div>
+        id="noReaction"
+      ></div>
+
 
 
       <div class="small-note">
+
         Nessuna pressione. Promesso. 😊
+
       </div>
+
 
     </section>
 
 
 
-    <!-- ========================= -->
-    <!-- SCHERMATA 2 -->
-    <!-- ========================= -->
 
-    <section class="screen" id="screen2">
+    <!-- ================================= -->
+    <!-- SCHERMATA 2 -->
+    <!-- ================================= -->
+
+
+    <section
+      class="screen"
+      id="screen2"
+    >
 
       <div class="emoji-big">
         🎉
       </div>
 
+
       <h1>
         Bene!
       </h1>
 
+
       <p>
-        A quanto pare questa cosa sta davvero
-        succedendo.
+
+        A quanto pare questa cosa
+        sta davvero succedendo.
+
         <br>
+
         Ora però arriva la parte importante:
+
       </p>
+
 
       <h2>
         Che cosa facciamo?
       </h2>
+
+
 
       <div class="choices">
 
 
         <button
           class="choice"
-          onclick="chooseActivity(this, 'Cena')">
+          onclick="
+            chooseActivity(this, 'Cena')
+          "
+        >
 
-          <span class="icon">🍝</span>
+          <span class="icon">
+            🍝
+          </span>
 
           <span>
             Cena
@@ -428,11 +797,17 @@
         </button>
 
 
+
         <button
           class="choice"
-          onclick="chooseActivity(this, 'Cinema')">
+          onclick="
+            chooseActivity(this, 'Cinema')
+          "
+        >
 
-          <span class="icon">🎬</span>
+          <span class="icon">
+            🎬
+          </span>
 
           <span>
             Cinema
@@ -441,11 +816,20 @@
         </button>
 
 
+
         <button
           class="choice"
-          onclick="chooseActivity(this, 'Aperitivo / caffè')">
+          onclick="
+            chooseActivity(
+              this,
+              'Aperitivo / caffè'
+            )
+          "
+        >
 
-          <span class="icon">☕</span>
+          <span class="icon">
+            ☕
+          </span>
 
           <span>
             Aperitivo / caffè
@@ -454,11 +838,20 @@
         </button>
 
 
+
         <button
           class="choice"
-          onclick="chooseActivity(this, 'Passeggiata')">
+          onclick="
+            chooseActivity(
+              this,
+              'Passeggiata'
+            )
+          "
+        >
 
-          <span class="icon">🌿</span>
+          <span class="icon">
+            🌿
+          </span>
 
           <span>
             Passeggiata
@@ -467,11 +860,17 @@
         </button>
 
 
+
         <button
           class="choice"
-          onclick="chooseActivity(this, 'Museo')">
+          onclick="
+            chooseActivity(this, 'Museo')
+          "
+        >
 
-          <span class="icon">🖼️</span>
+          <span class="icon">
+            🖼️
+          </span>
 
           <span>
             Museo
@@ -480,11 +879,17 @@
         </button>
 
 
+
         <button
           class="choice"
-          onclick="chooseActivity(this, 'Sorpresa')">
+          onclick="
+            chooseActivity(this, 'Sorpresa')
+          "
+        >
 
-          <span class="icon">🎁</span>
+          <span class="icon">
+            🎁
+          </span>
 
           <span>
             Fai tu
@@ -492,18 +897,22 @@
 
         </button>
 
+
       </div>
+
 
 
       <div
         class="reaction"
-        id="activityReaction">
-      </div>
+        id="activityReaction"
+      ></div>
+
 
 
       <button
         class="next"
-        onclick="goToScreen(3)">
+        onclick="goToScreen(3)"
+      >
 
         Continua →
 
@@ -514,82 +923,114 @@
 
 
 
-    <!-- ========================= -->
-    <!-- SCHERMATA 3 -->
-    <!-- ========================= -->
 
-    <section class="screen" id="screen3">
+    <!-- ================================= -->
+    <!-- SCHERMATA 3 -->
+    <!-- ================================= -->
+
+
+    <section
+      class="screen"
+      id="screen3"
+    >
 
       <div class="emoji-big">
         📅
       </div>
 
+
       <h1>
         Quando?
       </h1>
 
+
       <p>
+
         Ora scegliamo un giorno.
+
         <br>
+
         Prometto di non considerare
         questa risposta un contratto notarile.
+
       </p>
 
 
+
       <label for="date">
+
         Il giorno che preferisci
+
       </label>
+
 
       <input
         type="date"
-        id="date">
+        id="date"
+      >
+
 
 
       <div
         class="reaction"
-        id="dateReaction">
-      </div>
+        id="dateReaction"
+      ></div>
+
 
 
       <button
         class="next"
-        onclick="checkDate()">
+        onclick="checkDate()"
+      >
 
         Questo giorno va bene →
 
       </button>
 
 
+
       <button
         class="back"
-        onclick="goToScreen(2)">
+        onclick="goToScreen(2)"
+      >
 
         ← Torna indietro
 
       </button>
 
+
     </section>
 
 
 
-    <!-- ========================= -->
-    <!-- SCHERMATA 4 -->
-    <!-- ========================= -->
 
-    <section class="screen" id="screen4">
+    <!-- ================================= -->
+    <!-- SCHERMATA 4 -->
+    <!-- ================================= -->
+
+
+    <section
+      class="screen"
+      id="screen4"
+    >
 
       <div class="emoji-big">
         🕐
       </div>
 
+
       <h1>
         E a che ora?
       </h1>
 
+
       <p>
-        Qui possiamo fingere di essere persone
-        estremamente organizzate.
+
+        Qui possiamo fingere di essere
+        persone estremamente organizzate.
+
       </p>
+
 
 
       <select id="time">
@@ -625,110 +1066,148 @@
       </select>
 
 
+
       <div
         class="reaction"
-        id="timeReaction">
-      </div>
+        id="timeReaction"
+      ></div>
+
 
 
       <button
         class="next"
-        onclick="checkTime()">
+        onclick="checkTime()"
+      >
 
         Perfetto, continua →
 
       </button>
 
 
+
       <button
         class="back"
-        onclick="goToScreen(3)">
+        onclick="goToScreen(3)"
+      >
 
         ← Torna indietro
 
       </button>
 
+
     </section>
 
 
 
-    <!-- ========================= -->
-    <!-- SCHERMATA 5 -->
-    <!-- ========================= -->
 
-    <section class="screen" id="screen5">
+    <!-- ================================= -->
+    <!-- SCHERMATA 5 -->
+    <!-- ================================= -->
+
+
+    <section
+      class="screen"
+      id="screen5"
+    >
 
       <div class="emoji-big">
         💌
       </div>
 
+
       <h1>
         Ultima domanda
       </h1>
 
+
       <p>
+
         C'è qualcosa che vuoi dirmi?
+
         <br>
+
         Anche solo una richiesta speciale,
         una proposta o una minaccia velata.
+
       </p>
+
 
 
       <textarea
         id="message"
-        placeholder="Scrivi quello che vuoi 😊">
-      </textarea>
+        placeholder="Scrivi quello che vuoi 😊"
+      ></textarea>
+
 
 
       <button
         class="next"
-        onclick="submitForm()">
+        onclick="submitForm()"
+      >
 
         Invia la risposta 💌
 
       </button>
 
 
+
       <button
         class="back"
-        onclick="goToScreen(4)">
+        onclick="goToScreen(4)"
+      >
 
         ← Torna indietro
 
       </button>
 
+
     </section>
 
 
 
-    <!-- ========================= -->
-    <!-- SCHERMATA FINALE -->
-    <!-- ========================= -->
 
-    <section class="screen" id="screen6">
+    <!-- ================================= -->
+    <!-- SCHERMATA FINALE -->
+    <!-- ================================= -->
+
+
+    <section
+      class="screen"
+      id="screen6"
+    >
 
       <div class="final-emoji">
         💜
       </div>
 
+
       <h1>
         Operazione riuscita.
       </h1>
+
 
       <p>
         Ho ricevuto la tua risposta.
       </p>
 
-      <p>
-        A questo punto direi che tocca a me
-        organizzare qualcosa di carino.
-      </p>
 
       <p>
+
+        A questo punto direi che
+        tocca a me organizzare
+        qualcosa di carino.
+
+      </p>
+
+
+      <p>
+
         <strong>
           Ci vediamo presto, Elena. ☀️
         </strong>
+
       </p>
+
 
     </section>
 
@@ -742,9 +1221,10 @@
 <script>
 
 
-/* ===================================== */
+/* ========================================= */
 /* VARIABILI */
-/* ===================================== */
+/* ========================================= */
+
 
 let selectedActivity = "";
 
@@ -752,38 +1232,50 @@ let noAttempts = 0;
 
 
 
-/* ===================================== */
+/* ========================================= */
 /* CAMBIO SCHERMATA */
-/* ===================================== */
+/* ========================================= */
+
 
 function goToScreen(number) {
+
 
   document
     .querySelectorAll(".screen")
     .forEach(screen => {
 
-      screen.classList.remove("active");
+      screen.classList.remove(
+        "active"
+      );
 
     });
 
 
   document
-    .getElementById("screen" + number)
-    .classList.add("active");
+    .getElementById(
+      "screen" + number
+    )
+    .classList.add(
+      "active"
+    );
 
 
   window.scrollTo({
+
     top: 0,
+
     behavior: "smooth"
+
   });
 
 }
 
 
 
-/* ===================================== */
-/* RISPOSTA SI */
-/* ===================================== */
+/* ========================================= */
+/* RISPOSTA SÌ */
+/* ========================================= */
+
 
 function answerYes() {
 
@@ -793,53 +1285,45 @@ function answerYes() {
 
 
 
-/* ===================================== */
+/* ========================================= */
 /* RISPOSTA NO */
-/* ===================================== */
+/* ========================================= */
+
 
 function answerNo() {
 
+
   const button =
-    document.getElementById("noButton");
+    document.getElementById(
+      "noButton"
+    );
+
 
   const reaction =
-    document.getElementById("noReaction");
+    document.getElementById(
+      "noReaction"
+    );
 
 
   noAttempts++;
 
 
+
+  /* ================================ */
+  /* PRIMO NO */
+  /* ================================ */
+
+
   if (noAttempts === 1) {
 
-    reaction.innerText =
+
+    reaction.innerHTML =
       "Aspetta... sei sicura? 🤨";
 
-  }
 
-
-  else if (noAttempts === 2) {
-
-    reaction.innerText =
-      "Riprova. Questa volta con più convinzione. 😂";
-
-  }
-
-
-  else if (noAttempts === 3) {
-
-    reaction.innerText =
-      "Va bene, va bene... puoi cliccare No. 🥲";
-
-    button.classList.remove("running");
-
-    return;
-
-  }
-
-
-  if (noAttempts < 3) {
-
-    button.classList.add("running");
+    button.classList.add(
+      "running"
+    );
 
 
     const parent =
@@ -857,11 +1341,19 @@ function answerNo() {
 
 
     const randomX =
-      Math.random() * Math.max(maxX, 20);
+      Math.random() *
+      Math.max(
+        maxX,
+        20
+      );
 
 
     const randomY =
-      Math.random() * Math.max(maxY, 10);
+      Math.random() *
+      Math.max(
+        maxY,
+        10
+      );
 
 
     button.style.left =
@@ -871,55 +1363,127 @@ function answerNo() {
     button.style.top =
       randomY + "px";
 
+
+    return;
+
   }
+
+
+
+  /* ================================ */
+  /* SECONDO NO */
+  /* ================================ */
+
+
+  if (noAttempts === 2) {
+
+
+    button.classList.remove(
+      "running"
+    );
+
+
+    button.style.left = "";
+
+    button.style.top = "";
+
+
+    reaction.innerHTML =
+
+      '<span class="sad-face">🥺</span>' +
+
+      '<br>' +
+
+      'Va bene, non ti preoccupare lol';
+
+
+    return;
+
+  }
+
+
+
+  /* ================================ */
+  /* DAL TERZO NO IN POI */
+  /* ================================ */
+
+
+  reaction.innerHTML =
+
+    "Va bene davvero 😊";
+
 
 }
 
 
 
-/* ===================================== */
+/* ========================================= */
 /* SCELTA ATTIVITÀ */
-/* ===================================== */
+/* ========================================= */
 
-function chooseActivity(button, activity) {
+
+function chooseActivity(
+  button,
+  activity
+) {
+
 
   document
     .querySelectorAll(".choice")
     .forEach(item => {
 
-      item.classList.remove("selected");
+      item.classList.remove(
+        "selected"
+      );
 
     });
 
 
-  button.classList.add("selected");
+  button.classList.add(
+    "selected"
+  );
 
 
-  selectedActivity = activity;
+  selectedActivity =
+    activity;
 
 
   const reaction =
-    document.getElementById("activityReaction");
+    document.getElementById(
+      "activityReaction"
+    );
 
 
   const messages = {
 
+
     "Cena":
+
       "Cena! Una scelta molto seria. Il reparto carboidrati approva. 🍝",
 
+
     "Cinema":
+
       "Cinema! Ottimo. Oscurità, popcorn e zero responsabilità. 🎬",
 
+
     "Aperitivo / caffè":
+
       "Aperitivo/caffè. Una scelta strategicamente molto elegante. ☕",
 
+
     "Passeggiata":
+
       "Passeggiata! Finalmente un'attività che non richiede un tutorial. 🌿",
 
+
     "Museo":
+
       "Museo! Cultura + compagnia. Combinazione pericolosamente valida. 🖼️",
 
+
     "Sorpresa":
+
       "Oh. Hai scelto la sorpresa. Ora la responsabilità passa ufficialmente a me. 🎁"
 
   };
@@ -932,24 +1496,32 @@ function chooseActivity(button, activity) {
 
 
 
-/* ===================================== */
-/* DATA */
-/* ===================================== */
+/* ========================================= */
+/* CONTROLLO DATA */
+/* ========================================= */
+
 
 function checkDate() {
 
+
   const date =
-    document.getElementById("date").value;
+    document.getElementById(
+      "date"
+    ).value;
 
 
   const reaction =
-    document.getElementById("dateReaction");
+    document.getElementById(
+      "dateReaction"
+    );
 
 
   if (!date) {
 
+
     reaction.innerText =
       "Prima devi scegliere un giorno! 😌";
+
 
     return;
 
@@ -970,24 +1542,32 @@ function checkDate() {
 
 
 
-/* ===================================== */
-/* ORARIO */
-/* ===================================== */
+/* ========================================= */
+/* CONTROLLO ORARIO */
+/* ========================================= */
+
 
 function checkTime() {
 
+
   const time =
-    document.getElementById("time").value;
+    document.getElementById(
+      "time"
+    ).value;
 
 
   const reaction =
-    document.getElementById("timeReaction");
+    document.getElementById(
+      "timeReaction"
+    );
 
 
   if (!time) {
 
+
     reaction.innerText =
       "Manca ancora l'orario, signorina. 🧐";
+
 
     return;
 
@@ -1008,61 +1588,92 @@ function checkTime() {
 
 
 
-/* ===================================== */
+/* ========================================= */
 /* INVIO FORMSPREE */
-/* ===================================== */
+/* ========================================= */
+
 
 async function submitForm() {
 
+
   const date =
-    document.getElementById("date").value;
+    document.getElementById(
+      "date"
+    ).value;
 
 
   const time =
-    document.getElementById("time").value;
+    document.getElementById(
+      "time"
+    ).value;
 
 
   const message =
-    document.getElementById("message").value;
+    document.getElementById(
+      "message"
+    ).value;
+
+
+
+  /* ================================ */
+  /* CONTROLLI */
+  /* ================================ */
 
 
   if (!selectedActivity) {
+
 
     alert(
       "Manca la scelta dell'attività 😊"
     );
 
+
     goToScreen(2);
+
 
     return;
 
   }
 
 
+
   if (!date) {
+
 
     alert(
       "Manca la data 😊"
     );
 
+
     goToScreen(3);
+
 
     return;
 
   }
 
 
+
   if (!time) {
+
 
     alert(
       "Manca l'orario 😊"
     );
 
+
     goToScreen(4);
+
 
     return;
 
   }
+
+
+
+  /* ================================ */
+  /* DATI DA INVIARE */
+  /* ================================ */
 
 
   const formData =
@@ -1070,7 +1681,13 @@ async function submitForm() {
 
 
   formData.append(
-    "Attivita",
+    "Risposta iniziale",
+    "Sì"
+  );
+
+
+  formData.append(
+    "Attività",
     selectedActivity
   );
 
@@ -1093,28 +1710,37 @@ async function submitForm() {
   );
 
 
-  formData.append(
-    "Risposta iniziale",
-    "Sì"
-  );
+
+  /* ================================ */
+  /* INVIO */
+  /* ================================ */
 
 
   try {
 
+
     const response =
       await fetch(
+
         "https://formspree.io/f/mwlpdgnw",
+
         {
+
           method: "POST",
 
           body: formData,
 
           headers: {
+
             "Accept":
               "application/json"
+
           }
+
         }
+
       );
+
 
 
     if (!response.ok) {
@@ -1126,14 +1752,19 @@ async function submitForm() {
     }
 
 
+
     goToScreen(6);
+
 
 
   } catch (error) {
 
+
     alert(
+
       "Ops! Qualcosa è andato storto. " +
       "Controlla la connessione e riprova."
+
     );
 
   }
@@ -1143,5 +1774,7 @@ async function submitForm() {
 
 </script>
 
+
 </body>
+
 </html>
