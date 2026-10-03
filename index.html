@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una domanda per Elena ☀️</title>
+  <style>
+    :root {
+      --ink: #343047;
+      --muted: #777187;
+      --accent: #8266b3;
+      --accent-dark: #644b91;
+      --paper: #fffdfb;
+      --line: #e9e2ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 28px 16px;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(ellipse at top left, #f5e8f1, transparent 55%),
+        linear-gradient(145deg, #f8f3ff, #fff8ef);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255, 253, 251, 0.96);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 26px;
+      padding: clamp(22px, 5vw, 42px);
+      box-shadow: 0 18px 60px rgba(64, 43, 87, .09);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 14px 0;
+      font-size: clamp(30px, 6vw, 43px);
+      line-height: 1.12;
+      letter-spacing: -1.4px;
+    }
+
+    .intro {
+      color: #625c70;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .note {
+      margin: 22px 0;
+      padding: 14px 16px;
+      border-radius: 13px;
+      background: #f5effb;
+      color: #645276;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      margin: 30px 0 7px;
+      font-size: 19px;
+    }
+
+    .hint {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .activities {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .activity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 64px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color .18s, background .18s,
+        transform .18s;
+    }
+
+    .activity:hover {
+      border-color: #b8a3d8;
+      transform: translateY(-1px);
+    }
+
+    .activity.selected {
+      border: 2px solid var(--accent);
+      background: #f7f1ff;
+      padding: 12px;
+    }
+
+    .emoji { font-size: 23px; }
+    .activity span:last-child { font-weight: 650; }
+
+    .details {
+      display: none;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      animation: appear .25s ease-out;
+    }
+
+    .details.visible { display: block; }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 8px;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid #ddd5e6;
+      border-radius: 12px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #c9b6e6;
+      outline-offset: 2px;
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .submit {
+      width: 100%;
+      margin-top: 24px;
+      padding: 15px 18px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--accent);
+      color: white;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      transition: background .18s;
+    }
+
+    .submit:hover { background: var(--accent-dark); }
+
+    .submit:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: #898196;
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .success {
+      display: none;
+      padding: 20px 0 4px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .success.visible { display: block; }
+    .success .big { font-size: 42px; }
+
+    @media (max-width: 430px) {
+      .activities { grid-template-columns: 1fr; }
+      .two-cols { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <div id="formContent">
+        <div class="eyebrow">Una piccola proposta ☀️</div>
+        <h1>Elena, ti va di uscire con me?</h1>
+
+        <p class="intro">
+          Ciao Elena! 😊<br>
+          Non sapevo bene come chiederti di uscire e un po' mi
+          vergognavo, quindi ho pensato a un modo carino per farlo.
+          Alla peggio, ti fai una risata!
+        </p>
+
+        <div class="note">
+          Piccola premessa: non è un test e non ci sono risposte
+          corrette. Vorrei semplicemente organizzare qualcosa insieme
+          a te, se ti va. 💜
+        </div>
+
+        <form id="elenaForm"
+              action="https://formspree.io/f/mwlpdgnw"
+              method="POST">
+
+          <input type="hidden" name="Attivita" id="activityValue"
+                 required>
+
+          <h2 class="section-title">1. Cosa ti piacerebbe fare?</h2>
+          <p class="hint">
+            Scegli una delle opzioni e passiamo all'organizzazione!
+          </p>
+
+          <div class="activities">
+            <button type="button" class="activity"
+                    data-value="Cinema">
+              <span class="emoji">🎬</span>
+              <span>Cinema</span>
+            </button>
+
+            <button type="button" class="activity"
+                    data-value="Cena">
+              <span class="emoji">🍝</span>
+              <span>Cena</span>
+            </button>
+
+            <button type="button" class="activity"
+                    data-value="Aperitivo o caffè">
+              <span class="emoji">☕</span>
+              <span>Aperitivo / caffè</span>
+            </button>
+
+            <button type="button" class="activity"
+                    data-value="Museo">
+              <span class="emoji">🖼️</span>
+              <span>Museo</span>
+            </button>
+
+            <button type="button" class="activity"
+                    data-value="Passeggiata">
+              <span class="emoji">🌿</span>
+              <span>Passeggiata</span>
+            </button>
+          </div>
+
+          <div class="details" id="details">
+            <h2 class="section-title">2. Organizziamoci!</h2>
+            <p class="hint">
+              Perfetto! Vediamo quando potremmo incontrarci.
+            </p>
+
+            <label for="name">Come ti chiamo? 😊</label>
+            <input id="name" name="Nome" type="text"
+                   placeholder="Il tuo nome" required>
+
+            <label for="date">Quale giorno preferisci?</label>
+            <input id="date" name="Data preferita" type="date"
+                   required>
+
+            <div class="two-cols">
+              <div>
+                <label for="time">A che ora?</label>
+                <select id="time" name="Orario preferito" required>
+                  <option value="">Scegli un orario</option>
+                  <option>10:00</option>
+                  <option>11:00</option>
+                  <option>12:00</option>
+                  <option>13:00</option>
+                  <option>14:00</option>
+                  <option>15:00</option>
+                  <option>16:00</option>
+                  <option>17:00</option>
+                  <option>18:00</option>
+                  <option>19:00</option>
+                  <option>20:00</option>
+                  <option>21:00</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="flexibility">Quanto sei flessibile?</label>
+                <select id="flexibility" name="Flessibilita">
+                  <option value="Data e ora vanno bene">
+                    Data e ora vanno bene
+                  </option>
+                  <option value="Meglio concordare">
+                    Meglio concordare
+                  </option>
+                  <option value="Sono flessibile">
+                    Sono flessibile
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <label for="message">
+              Vuoi aggiungere qualcosa? (facoltativo)
+            </label>
+            <textarea id="message" name="Messaggio"
+              placeholder="Per esempio, un posto che ti piacerebbe..."></textarea>
+
+            <button type="submit" class="submit" id="submitBtn">
+              Invia la risposta 💌
+            </button>
+          </div>
+        </form>
+
+        <div class="footer">
+          Fatto con un pizzico di coraggio e un po' di creatività.
+        </div>
+      </div>
+
+      <div class="success" id="success" aria-live="polite">
+        <div class="big">💌</div>
+        <h2>Risposta ricevuta!</h2>
+        <p>Grazie per aver compilato il form.</p>
+        <p>Ora tocca a me organizzare qualcosa di carino. 😊</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll(".activity");
+    const activityValue = document.getElementById("activityValue");
+    const details = document.getElementById("details");
+    const dateInput = document.getElementById("date");
+    const form = document.getElementById("elenaForm");
+    const submitBtn = document.getElementById("submitBtn");
+
+    // Impedisce di scegliere una data già passata.
+    const today = new Date();
+    const localToday = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+    dateInput.min = localToday;
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(item => item.classList.remove("selected"));
+        button.classList.add("selected");
+
+        activityValue.value = button.dataset.value;
+        details.classList.add("visible");
+
+        details.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    });
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+
+      if (!activityValue.value) {
+        alert("Scegli prima cosa ti piacerebbe fare! 😊");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Invio in corso...";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        });
+
+        if (!response.ok) {
+          throw new Error("Invio non riuscito");
+        }
+
+        document.getElementById("formContent").style.display = "none";
+        document.getElementById("success").classList.add("visible");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (error) {
+        alert(
+          "Non sono riuscito a inviare la risposta. " +
+          "Controlla la connessione e riprova."
+        );
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Invia la risposta 💌";
+      }
+    });
+  </script>
+</body>
+</html>
